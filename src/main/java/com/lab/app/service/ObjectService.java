@@ -29,24 +29,24 @@ public class ObjectService {
     }
 
     @Transactional
-    public List<DataObject> postObjects(@RequestBody Map<String, String> inputs) {
-        List<DataObject> list = new ArrayList<>();
+    public List<DataObject> updateObjects(@RequestBody Map<String, String> inputs) {
+        final List<DataObject> list = new ArrayList<>();
 
         inputs.forEach((key, value) -> {
-            logger.info("Key: " + key + ", Value: " + value);
+            logger.info("Key: {}, Value: {}", key, value);
             Optional<KeyValue> dbObject = objectRepository.findTopByKvKeyOrderByCreatedDesc(key);
-            KeyValue dataObject = new KeyValue();
+            KeyValue kvEntity = new KeyValue();
             if (dbObject.isPresent()) {
-                dataObject.setVersion(dbObject.get().getVersion() + 1);
+                kvEntity.setVersion(dbObject.get().getVersion() + 1);
             }
             else {
-                dataObject.setVersion(1L);
+                kvEntity.setVersion(1L);
             }
-            dataObject.setKvKey(key);
-            dataObject.setKvValue(value);
-            dataObject.setCreated(LocalDateTime.now(zoneId));
+            kvEntity.setKvKey(key);
+            kvEntity.setKvValue(value);
+            kvEntity.setCreated(LocalDateTime.now(zoneId));
 
-            final KeyValue save = objectRepository.save(dataObject);
+            final KeyValue save = objectRepository.save(kvEntity);
             DataObject dto = new DataObject();
             dto.setId(save.getId());
             dto.setKey(save.getKvKey());

@@ -22,7 +22,7 @@ public class ObjectController {
 
     @PostMapping
     public List<DataObject> postObject(@RequestBody Map<String, String> inputs) {
-        return objectService.postObjects(inputs);
+        return objectService.updateObjects(inputs);
     }
 
     @GetMapping("/{key}")
