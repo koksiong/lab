@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -82,7 +83,7 @@ public class ObjectServiceTest {
 
     @Test
     public void testGetLatestObjects_with_no_timestamp() {
-
+        fail("Not yet implemented");
     }
 
 }
