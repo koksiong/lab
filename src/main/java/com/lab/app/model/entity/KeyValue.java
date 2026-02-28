@@ -6,6 +6,9 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(uniqueConstraints = {
+        @UniqueConstraint(name = "uc_key_version", columnNames = {"kvKey", "version"})
+})
 @Data
 public class KeyValue {
     @Id
