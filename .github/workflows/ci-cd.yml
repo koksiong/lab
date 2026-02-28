@@ -27,9 +27,9 @@ jobs:
         uses: SonarSource/sonarcloud-github-action@v2
         with:
           args: >
-              -Dsonar.projectKey=koksiong
-              -Dsonar.organization=koksiong
-              -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+            -Dsonar.projectKey=koksiong
+            -Dsonar.organization=koksiong
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
   # 2. BUILD AND PUSH JOB: Runs only if 'test' passes
   build-and-push:
