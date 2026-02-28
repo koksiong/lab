@@ -19,7 +19,7 @@ import java.util.Optional;
 
 @Service
 public class ObjectService {
-    private static final ZoneId zoneId = ZoneId.of("UTC");
+    public static final ZoneId zoneId = ZoneId.of("UTC");
 
     private final Logger logger = LoggerFactory.getLogger(ObjectService.class);
     private final ObjectRepository objectRepository;

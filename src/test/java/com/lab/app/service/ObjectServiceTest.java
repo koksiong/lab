@@ -10,13 +10,15 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import static com.lab.app.service.ObjectService.zoneId;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -83,7 +85,42 @@ public class ObjectServiceTest {
 
     @Test
     public void testGetLatestObjects_with_no_timestamp() {
-        fail("Not yet implemented");
+        when(objectRepository.findTopByKvKeyOrderByCreatedDesc("id")).thenReturn(Optional.empty());
+
+        final String result = objectService.getLatestValue("id", null);
+
+        verify(objectRepository).findTopByKvKeyOrderByCreatedDesc("id");
+        assertThat(result).isNull();
+    }
+
+    @Test
+    public void testGetLatestObjects_with_timestamp() {
+        KeyValue value = new KeyValue();
+        value.setKvKey("id");
+        value.setKvValue("1000");
+        LocalDateTime localDateTime = LocalDateTime.ofInstant(Instant.ofEpochSecond(Long.parseLong("1772242423")), zoneId);
+        when(objectRepository.findTopByKvKeyAndCreatedLessThanEqualOrderByCreatedDesc("id", localDateTime)).thenReturn(Optional.of(value));
+
+        final String result = objectService.getLatestValue("id", "1772242423");
+
+        verify(objectRepository).findTopByKvKeyAndCreatedLessThanEqualOrderByCreatedDesc("id", localDateTime);
+        assertThat(result).isEqualTo("1000");
+    }
+
+    @Test
+    public void testGetAllObjects() {
+        KeyValue kValue = new KeyValue();
+        kValue.setKvKey("id");
+        kValue.setKvValue("1000");
+        when(objectRepository.findAll()).thenReturn(List.of(kValue));
+
+        final List<DataObject> result = objectService.getAllObjects();
+        
+        verify(objectRepository).findAll();
+        assertThat(result).hasSize(1);
+        DataObject dataObject = result.get(0);
+        assertThat(dataObject.getKey()).isEqualTo("id");
+        assertThat(dataObject.getValue()).isEqualTo("1000");
     }
 
 }
