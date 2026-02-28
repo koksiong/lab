@@ -115,7 +115,7 @@ public class ObjectServiceTest {
         when(objectRepository.findAll()).thenReturn(List.of(kValue));
 
         final List<DataObject> result = objectService.getAllObjects();
-        
+
         verify(objectRepository).findAll();
         assertThat(result).hasSize(1);
         DataObject dataObject = result.get(0);
