@@ -35,6 +35,11 @@
             ${project.build.directory}/site/jacoco/jacoco.xml
         </sonar.coverage.jacoco.xmlReportPaths>
         <sonar.java.source>17</sonar.java.source>
+        <sonar.coverage.exclusions>
+            **/entity/*.java,
+            **/dto/**/*.java,
+            **/config/*.java
+        </sonar.coverage.exclusions>
     </properties>
     <!-- Override Jackson versions to patched release -->
     <dependencyManagement>
