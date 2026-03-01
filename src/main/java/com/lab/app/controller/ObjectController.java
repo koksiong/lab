@@ -27,7 +27,7 @@ public class ObjectController {
 
     @GetMapping("/{key}")
     public String getObject(@PathVariable String key, @RequestParam(value = "timestamp", required = false) String timestamp) {
-        logger.info("Getting object for key: " + key + ", timestamp: " + timestamp);
+        logger.info("Getting object for key: {}, timestamp: {}", key, timestamp);
         return objectService.getLatestValue(key, timestamp);
     }
 

@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class ObjectControllerTest {
+class ObjectControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
@@ -31,7 +31,7 @@ public class ObjectControllerTest {
     private ObjectMapper objectMapper;
 
     @Test
-    public void testPostObject_basic_and_get() throws Exception {
+    void testPostObject_basic_and_get() throws Exception {
         final Map<String, String> inputs = new HashMap<>();
         final String key = UUID.randomUUID().toString();
         inputs.put(key, "value1");
@@ -50,7 +50,7 @@ public class ObjectControllerTest {
     }
 
     @Test
-    public void testPostObject_basic_update_and_get() throws Exception {
+    void testPostObject_basic_update_and_get() throws Exception {
         final Map<String, String> inputs = new HashMap<>();
         final String key = UUID.randomUUID().toString();
         inputs.put(key, "value1");
@@ -80,7 +80,7 @@ public class ObjectControllerTest {
     }
 
     @Test
-    public void testGetObject_with_timestamp() throws Exception {
+    void testGetObject_with_timestamp() throws Exception {
         final Map<String, String> inputs = new HashMap<>();
         final String key = UUID.randomUUID().toString();
         inputs.put(key, "value1");
@@ -129,7 +129,7 @@ public class ObjectControllerTest {
 
 
     @Test
-    public void testGetAllObjects_basic() throws Exception {
+    void testGetAllObjects_basic() throws Exception {
         final Map<String, String> inputs = new HashMap<>();
         final String key = UUID.randomUUID().toString();
         inputs.put(key, "value1");

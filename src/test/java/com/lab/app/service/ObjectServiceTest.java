@@ -24,7 +24,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class ObjectServiceTest {
+class ObjectServiceTest {
 
     @Mock
     private ObjectRepository objectRepository;
@@ -33,13 +33,13 @@ public class ObjectServiceTest {
     private ObjectService objectService;
 
     @Test
-    public void testUpdateObjects_with_empty_inputs() {
+    void testUpdateObjects_with_empty_inputs() {
         List<DataObject> result = objectService.updateObjects(new HashMap<>());
         assertThat(result).isEmpty();
     }
 
     @Test
-    public void testUpdateObjects_with_no_db_object() {
+    void testUpdateObjects_with_no_db_object() {
         Map<String, String> inputs = new HashMap<>();
         inputs.put("id", "1");
         Optional<KeyValue> dbObject = Optional.empty();
@@ -59,7 +59,7 @@ public class ObjectServiceTest {
     }
 
     @Test
-    public void testUpdateObjects_with_db_object() {
+    void testUpdateObjects_with_db_object() {
         Map<String, String> inputs = new HashMap<>();
         inputs.put("id", "1");
         KeyValue dbKeyValue = new KeyValue();
@@ -84,7 +84,7 @@ public class ObjectServiceTest {
     }
 
     @Test
-    public void testGetLatestObjects_with_no_timestamp() {
+    void testGetLatestObjects_with_no_timestamp() {
         when(objectRepository.findTopByKvKeyOrderByCreatedDesc("id")).thenReturn(Optional.empty());
 
         final String result = objectService.getLatestValue("id", null);
@@ -94,7 +94,7 @@ public class ObjectServiceTest {
     }
 
     @Test
-    public void testGetLatestObjects_with_timestamp() {
+    void testGetLatestObjects_with_timestamp() {
         KeyValue value = new KeyValue();
         value.setKvKey("id");
         value.setKvValue("1000");
@@ -108,7 +108,7 @@ public class ObjectServiceTest {
     }
 
     @Test
-    public void testGetAllObjects() {
+    void testGetAllObjects() {
         KeyValue kValue = new KeyValue();
         kValue.setKvKey("id");
         kValue.setKvValue("1000");

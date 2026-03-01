@@ -29,9 +29,6 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: >
           mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
-#            -Dsonar.projectKey=koksiong_lab \
-#            -Dsonar.organization=koksiong \
-#            -Dsonar.host.url=https://sonarcloud.io
 
   # 2. BUILD AND PUSH JOB: Runs only if 'test' passes
   build-and-push:

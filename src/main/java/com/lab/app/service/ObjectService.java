@@ -60,10 +60,10 @@ public class ObjectService {
     }
 
     public String getLatestValue(String key, String timestamp) {
-        logger.info("Getting latest object");
+        logger.info("Getting latest object, using key: {}, timestamp: {}", key, timestamp);
         if (timestamp != null) {
             LocalDateTime localDateTime = LocalDateTime.ofInstant(Instant.ofEpochSecond(Long.parseLong(timestamp)), zoneId);
-            logger.info("Timestamp: " + localDateTime);
+            logger.info("Timestamp: {}", localDateTime);
             Optional<KeyValue> db = objectRepository.findTopByKvKeyAndCreatedLessThanEqualOrderByCreatedDesc(key, localDateTime);
             return db.map(KeyValue::getKvValue).orElse(null);
         }
