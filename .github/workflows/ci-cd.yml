@@ -24,12 +24,14 @@ jobs:
         run: mvn test
 
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@v2
+        uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
             -Dsonar.projectKey=lab
             -Dsonar.organization=koksiong
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+            -Dsonar.java.binaries=target/classes
 
   # 2. BUILD AND PUSH JOB: Runs only if 'test' passes
   build-and-push:
