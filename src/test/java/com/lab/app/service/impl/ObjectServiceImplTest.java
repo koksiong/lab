@@ -1,4 +1,4 @@
-package com.lab.app.service;
+package com.lab.app.service.impl;
 
 import com.lab.app.dao.ObjectRepository;
 import com.lab.app.model.dto.DataObject;
@@ -17,20 +17,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import static com.lab.app.service.ObjectService.zoneId;
+import static com.lab.app.service.impl.ObjectServiceImpl.zoneId;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class ObjectServiceTest {
+class ObjectServiceImplTest {
 
     @Mock
     private ObjectRepository objectRepository;
 
     @InjectMocks
-    private ObjectService objectService;
+    private ObjectServiceImpl objectService;
 
     @Test
     void testUpdateObjects_with_empty_inputs() {

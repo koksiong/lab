@@ -80,6 +80,7 @@ class ObjectControllerTest {
     }
 
     @Test
+    @SuppressWarnings("java:S2925")
     void testGetObject_with_timestamp() throws Exception {
         final Map<String, String> inputs = new HashMap<>();
         final String key = UUID.randomUUID().toString();

@@ -15,7 +15,7 @@ public class KeyValue {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String kvKey;
-    @Column(length = 1000)
+    @Column(length = 1000) // set to 1000 for coding exercise
     private String kvValue;
     private Long version;
     private LocalDateTime created;
