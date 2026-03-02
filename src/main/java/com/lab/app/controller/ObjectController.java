@@ -46,9 +46,6 @@ public class ObjectController {
      */
     @GetMapping("/{key}")
     public String getObject(@PathVariable String key, @RequestParam(value = "timestamp", required = false) String timestamp) {
-        if (Objects.isNull(key)) {
-            throw new NullPointerException("key is empty");
-        }
         return objectService.getLatestValue(key, timestamp);
     }
 

@@ -72,7 +72,7 @@ public class ObjectServiceImpl implements ObjectService {
 
     @Override
     public String getLatestValue(String key, String timestamp) {
-        logger.info("Getting latest object, using key: {}, timestamp: {}", key, timestamp);
+        logger.info("Getting latest object, using key: {}", key);
         if (timestamp != null) {
             LocalDateTime localDateTime = LocalDateTime.ofInstant(Instant.ofEpochSecond(Long.parseLong(timestamp)), zoneId);
             logger.info("Timestamp: {}", localDateTime);
