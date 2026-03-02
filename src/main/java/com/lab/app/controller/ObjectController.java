@@ -2,8 +2,6 @@ package com.lab.app.controller;
 
 import com.lab.app.model.dto.DataObject;
 import com.lab.app.service.ObjectService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,7 +11,6 @@ import java.util.Objects;
 @RestController
 @RequestMapping("/object")
 public class ObjectController {
-    private final Logger logger = LoggerFactory.getLogger(ObjectController.class);
 
     private final ObjectService objectService;
 
